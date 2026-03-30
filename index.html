@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="manifest" href="/DEXStablecoin.com/manifest.json">
-<meta name="theme-color" content="#00d4aa">
 <title>StableX DEX — Stablecoin Exchange on Solana</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@solana/web3.js@1.91.8/lib/index.iife.min.js"></script>
@@ -90,6 +88,13 @@
   .phase-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
   .phase-badge.current{background:var(--accent-dim);color:var(--accent);}
   .phase-badge.upcoming{background:var(--bg3);color:var(--text3);}
+  .chain-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+  .chain-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:0.3px;border:1px solid;}
+  .chain-chip.sol{background:rgba(153,69,255,0.12);color:#bb88ff;border-color:rgba(153,69,255,0.3);}
+  .chain-chip.eglob{background:rgba(0,212,170,0.10);color:var(--accent);border-color:rgba(0,212,170,0.3);}
+  .chain-chip-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite;}
+  .chain-chip.sol .chain-chip-dot{background:#9945ff;}
+  .chain-chip.eglob .chain-chip-dot{background:var(--accent);}
 
   /* ── DEX LAYOUT ── */
   .dex-wrap{padding:20px 24px;max-width:1280px;margin:0 auto;}
@@ -369,10 +374,10 @@
   <div class="roadmap-section">
     <div class="section-title" data-i18n="roadmap_title">Roadmap <span>StableX</span></div>
     <div class="roadmap">
-      <div class="road-card active-phase"><div class="phase-badge current" data-i18n="phase_current">Current</div><div class="road-phase">Phase 1</div><div class="road-title" data-i18n="road1_title">Solana Launch</div><ul class="road-items"><li data-i18n="road1_i1">DEX Web3 Interface</li><li data-i18n="road1_i2">Solana Wallet Connect</li><li>eCNY, eJPY, eUSDC</li><li data-i18n="road1_i4">Fee = 0%</li></ul></div>
-      <div class="road-card"><div class="phase-badge upcoming" data-i18n="phase_soon">Coming Soon</div><div class="road-phase">Phase 2</div><div class="road-title" data-i18n="road2_title">Expansion</div><ul class="road-items"><li data-i18n="road2_i1">Open seller listing</li><li data-i18n="road2_i2">Liquidity pool</li><li data-i18n="road2_i3">Limit orders</li></ul></div>
-      <div class="road-card"><div class="phase-badge upcoming" data-i18n="phase_planned">Planned</div><div class="road-phase">Phase 3</div><div class="road-title" data-i18n="road3_title">ETH & BNB</div><ul class="road-items"><li data-i18n="road3_i1">Ethereum bridge</li><li data-i18n="road3_i2">BNB chain</li><li data-i18n="road3_i3">Cross-chain swap</li></ul></div>
-      <div class="road-card"><div class="phase-badge upcoming" data-i18n="phase_future">Future</div><div class="road-phase">Phase 4</div><div class="road-title" data-i18n="road4_title">Ecosystem</div><ul class="road-items"><li data-i18n="road4_i1">Native token SBX</li><li data-i18n="road4_i2">DAO governance</li><li data-i18n="road4_i3">Mobile app</li></ul></div>
+      <div class="road-card active-phase"><div class="phase-badge current" data-i18n="phase_current">Current</div><div class="road-phase">Phase 1</div><div class="road-title">Multi-Chain Launch</div><div class="chain-chips"><span class="chain-chip sol"><span class="chain-chip-dot"></span>Solana</span><span class="chain-chip eglob"><span class="chain-chip-dot"></span>eGLOBLE</span></div><ul class="road-items"><li>DEX Web3 Interface</li><li>SOL &amp; eGLOBLE Wallets</li><li>eCNY, eJPY, eUSDC</li><li>Fee = 0%</li></ul></div>
+      <div class="road-card"><div class="phase-badge upcoming" data-i18n="phase_soon">Coming Soon</div><div class="road-phase">Phase 2</div><div class="road-title">Mở rộng</div><ul class="road-items"><li>Open seller listing</li><li>Liquidity pool</li><li>Limit orders</li></ul></div>
+      <div class="road-card"><div class="phase-badge upcoming" data-i18n="phase_planned">Planned</div><div class="road-phase">Phase 3</div><div class="road-title">ETH & BNB</div><ul class="road-items"><li>Ethereum bridge</li><li>BNB chain</li><li>Cross-chain swap</li></ul></div>
+      <div class="road-card"><div class="phase-badge upcoming" data-i18n="phase_future">Future</div><div class="road-phase">Phase 4</div><div class="road-title">Ecosystem</div><ul class="road-items"><li>Native token SBX</li><li>DAO governance</li><li>Mobile app</li></ul></div>
     </div>
   </div>
 </div>
@@ -440,7 +445,7 @@
         <div class="panel">
           <div class="panel-head">
             <div class="panel-title" data-i18n="panel_buy">⚡ Place Buy Order</div>
-            <span class="free-badge" data-i18n="fee_zero">✦ Fee = 0%</span>
+            <span class="free-badge">✦ Phí = 0%</span>
           </div>
           <div class="buy-wrap">
 
@@ -617,7 +622,7 @@
 // ── Backend URL — tự động detect, hoạt động với ngrok / Cloudflare / localhost ──
 // server.js serve luôn cả frontend → origin trang = origin API, không cần hardcode port
 const BACKEND_HTTP = "https://unprospered-noncontagious-darian.ngrok-free.dev";
-const BACKEND_WS = "wss://unprospered-noncontagious-darian.ngrok-free.dev";
+const BACKEND_WS   = "wss://unprospered-noncontagious-darian.ngrok-free.dev";
 
 const PAYMENT_TOKENS = {
   USDT:  { mint:'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB', decimals:6 },
@@ -1372,10 +1377,6 @@ const LANGS = {
     feat6_title: 'Transparent Order Book', feat6_body: 'View all sell orders, fully traceable on-chain.',
     roadmap_title: 'Roadmap <span>StableX</span>',
     phase_current: 'Current', phase_soon: 'Coming Soon', phase_planned: 'Planned', phase_future: 'Future',
-    road1_title:'Solana Launch', road1_i1:'DEX Web3 Interface', road1_i2:'Solana Wallet Connect', road1_i4:'Fee = 0%',
-    road2_title:'Expansion', road2_i1:'Open seller listing', road2_i2:'Liquidity pool', road2_i3:'Limit orders',
-    road3_title:'ETH & BNB', road3_i1:'Ethereum bridge', road3_i2:'BNB chain', road3_i3:'Cross-chain swap',
-    road4_title:'Ecosystem', road4_i1:'Native token SBX', road4_i2:'DAO governance', road4_i3:'Mobile app',
     best_rate: 'Best rate <span class="mc-badge">best</span>', best_rate_plain: 'Best rate',
     panel_orders: '📋 Sell Orders', filter_all: 'All',
     th_token: 'Token', th_rate: 'Rate', th_vol: 'Volume', th_val: '≈ Value',
@@ -1436,10 +1437,6 @@ const LANGS = {
     feat6_title: '透明なオーダーブック', feat6_body: 'すべての売り注文を表示、オンチェーンで追跡可能。',
     roadmap_title: 'ロードマップ <span>StableX</span>',
     phase_current: '現在', phase_soon: '近日公開', phase_planned: '計画中', phase_future: '将来',
-    road1_title:'Solana ローンチ', road1_i1:'DEX Web3インターフェース', road1_i2:'Solanaウォレット接続', road1_i4:'手数料 = 0%',
-    road2_title:'拡張', road2_i1:'出品者リスト開放', road2_i2:'流動性プール', road2_i3:'指値注文',
-    road3_title:'ETH & BNB', road3_i1:'Ethereumブリッジ', road3_i2:'BNBチェーン', road3_i3:'クロスチェーンスワップ',
-    road4_title:'エコシステム', road4_i1:'ネイティブトークン SBX', road4_i2:'DAOガバナンス', road4_i3:'モバイルアプリ',
     best_rate: '最良レート <span class="mc-badge">best</span>', best_rate_plain: '最良レート',
     panel_orders: '📋 売り注文', filter_all: 'すべて',
     th_token: 'トークン', th_rate: 'レート', th_vol: '数量', th_val: '≈ 価値',
@@ -1500,10 +1497,6 @@ const LANGS = {
     feat6_title: '透明订单簿', feat6_body: '查看所有卖单，完全可在链上追溯。',
     roadmap_title: '路线图 <span>StableX</span>',
     phase_current: '当前', phase_soon: '即将推出', phase_planned: '计划中', phase_future: '未来',
-    road1_title:'Solana 启动', road1_i1:'DEX Web3 界面', road1_i2:'Solana 钱包连接', road1_i4:'手续费 = 0%',
-    road2_title:'扩展', road2_i1:'开放卖家挂单', road2_i2:'流动性池', road2_i3:'限价订单',
-    road3_title:'ETH & BNB', road3_i1:'以太坊跨链桥', road3_i2:'BNB链', road3_i3:'跨链兑换',
-    road4_title:'生态系统', road4_i1:'原生代币 SBX', road4_i2:'DAO 治理', road4_i3:'移动端应用',
     best_rate: '最优汇率 <span class="mc-badge">best</span>', best_rate_plain: '最优汇率',
     panel_orders: '📋 卖单', filter_all: '全部',
     th_token: '代币', th_rate: '汇率', th_vol: '数量', th_val: '≈ 价值',
@@ -1564,10 +1557,6 @@ const LANGS = {
     feat6_title: 'Order book minh bạch', feat6_body: 'Xem toàn bộ lệnh chào bán, truy vết on-chain.',
     roadmap_title: 'Lộ trình <span>StableX</span>',
     phase_current: 'Hiện tại', phase_soon: 'Sắp ra', phase_planned: 'Kế hoạch', phase_future: 'Tương lai',
-    road1_title:'Solana Launch', road1_i1:'Giao diện DEX Web3', road1_i2:'Kết nối ví Solana', road1_i4:'Phí = 0%',
-    road2_title:'Mở rộng', road2_i1:'Mở danh sách người bán', road2_i2:'Liquidity pool', road2_i3:'Lệnh giới hạn',
-    road3_title:'ETH & BNB', road3_i1:'Ethereum bridge', road3_i2:'BNB chain', road3_i3:'Cross-chain swap',
-    road4_title:'Hệ sinh thái', road4_i1:'Token gốc SBX', road4_i2:'DAO quản trị', road4_i3:'Ứng dụng di động',
     best_rate: 'Tỷ giá tốt nhất <span class="mc-badge">best</span>', best_rate_plain: 'Tỷ giá tốt nhất',
     panel_orders: '📋 Lệnh chào bán', filter_all: 'Tất cả',
     th_token: 'Token', th_rate: 'Tỷ giá', th_vol: 'Khối lượng', th_val: '≈ Giá trị',
